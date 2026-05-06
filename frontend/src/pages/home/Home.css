@@ -55,3 +55,91 @@
     max-width: 300px;
     line-height: 1.6;
 }
+
+/* ─── Tablet ─────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .home-empty-state h2 {
+        font-size: 20px;
+    }
+
+    .home-empty-state {
+        padding: 30px;
+    }
+}
+
+/* ─── Mobile: sidebar and chat are full-width, mutually visible ───── */
+@media (max-width: 768px) {
+    .home-layout {
+        position: relative;
+    }
+
+    /* Sidebar: full width by default */
+    .home-layout .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: unset !important;
+        border-right: none;
+    }
+
+    /* Chat area: hidden by default on mobile */
+    .home-layout .home-chat-area {
+        display: none;
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+    }
+
+    /* When a chat is open: hide sidebar, show chat full-screen */
+    .home-layout.mobile-chat-active .sidebar {
+        display: none;
+    }
+
+    .home-layout.mobile-chat-active .home-chat-area {
+        display: flex;
+    }
+
+    .home-empty-state {
+        padding: 24px 20px;
+    }
+
+    .empty-state-icon {
+        width: 72px;
+        height: 72px;
+    }
+
+    .home-empty-state h2 {
+        font-size: 18px;
+    }
+
+    .home-empty-state p {
+        font-size: 14px;
+    }
+}
+
+/* ─── Small phones ───────────────────────────────────────────────── */
+@media (max-width: 380px) {
+    .home-empty-state {
+        padding: 20px 16px;
+        gap: 12px;
+    }
+
+    .empty-state-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+    }
+
+    .empty-state-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .home-empty-state h2 {
+        font-size: 16px;
+    }
+
+    .home-empty-state p {
+        font-size: 13px;
+        max-width: 250px;
+    }
+}

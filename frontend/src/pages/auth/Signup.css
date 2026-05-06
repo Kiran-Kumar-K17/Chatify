@@ -6,6 +6,7 @@
     background: linear-gradient(135deg, #0f0e2e 0%, #1e1b4b 40%, #1a3a2a 100%);
     padding: 20px;
     min-height: 0;
+    overflow-y: auto;
 }
 
 .auth-card {
@@ -126,7 +127,6 @@
     padding: 12px 14px 12px 42px;
     border: 1.5px solid #e2e8f0;
     border-radius: 10px;
-    font-size: 14.5px;
     outline: none;
     transition:
         border-color 0.2s,
@@ -134,6 +134,7 @@
     color: #0f172a;
     background: #fafafa;
     box-sizing: border-box;
+    font-size: max(16px, 14.5px);
 }
 
 .input-wrapper input:focus {
@@ -166,6 +167,7 @@
     min-height: 48px;
     box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
     letter-spacing: 0.02em;
+    touch-action: manipulation;
 }
 
 .signup-btn {
@@ -224,4 +226,98 @@
 .auth-footer a:hover {
     color: #4f46e5;
     text-decoration: underline;
+}
+
+/* ─── Tablet auth ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .auth-page {
+        padding: 20px 16px;
+    }
+
+    .auth-card {
+        padding: 36px 28px;
+    }
+}
+
+/* ─── Mobile auth ────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .auth-page {
+        padding: 16px;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .auth-card {
+        padding: 28px 22px;
+        border-radius: 16px;
+    }
+
+    .auth-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        margin-bottom: 14px;
+    }
+
+    .auth-header {
+        margin-bottom: 24px;
+    }
+
+    .auth-header h1 {
+        font-size: 20px;
+    }
+
+    .auth-form {
+        gap: 14px;
+    }
+
+    .auth-btn {
+        min-height: 52px;
+        font-size: 16px;
+    }
+}
+
+/* ─── Tiny phones ────────────────────────────────────────────────── */
+@media (max-width: 380px) {
+    .auth-page {
+        padding: 12px 10px;
+        padding-top: 24px;
+    }
+
+    .auth-card {
+        padding: 24px 18px;
+        border-radius: 14px;
+    }
+
+    .auth-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+    }
+
+    .auth-header h1 {
+        font-size: 18px;
+    }
+
+    .auth-header p {
+        font-size: 13px;
+    }
+
+    .form-group label {
+        font-size: 12.5px;
+    }
+
+    .input-wrapper input {
+        padding: 10px 12px 10px 38px;
+    }
+
+    .auth-form {
+        gap: 12px;
+    }
+
+    .auth-footer {
+        margin-top: 22px;
+        font-size: 12.5px;
+    }
 }

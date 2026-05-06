@@ -74,6 +74,8 @@
     transition:
         border-color 0.2s,
         background 0.2s;
+    /* Prevent iOS zoom */
+    font-size: max(16px, 13.5px);
 }
 
 .search-input::placeholder {
@@ -125,6 +127,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
+    touch-action: manipulation;
 }
 
 .sidebar-tab.active {
@@ -158,6 +161,7 @@
     flex: 1;
     overflow-y: auto;
     padding: 4px 8px 16px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .contact-item {
@@ -169,10 +173,17 @@
     cursor: pointer;
     transition: background 0.15s;
     margin-bottom: 2px;
+    /* Bigger touch target */
+    min-height: 64px;
+    touch-action: manipulation;
 }
 
 .contact-item:hover {
     background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-item:active {
+    background: rgba(99, 102, 241, 0.15);
 }
 
 .contact-item.active {
@@ -308,5 +319,118 @@
     }
     50% {
         opacity: 1;
+    }
+}
+
+/* ─── Tablet ─────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 260px;
+        min-width: 220px;
+    }
+
+    .sidebar-header {
+        padding: 18px 18px 10px;
+    }
+
+    .sidebar-title {
+        font-size: 17px;
+    }
+}
+
+/* ─── Mobile — full width (handled by Home.css class switching) ───── */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .sidebar-header {
+        padding: 16px 16px 10px;
+    }
+
+    .sidebar-title {
+        font-size: 17px;
+    }
+
+    .contact-item {
+        min-height: 68px;
+        padding: 12px 14px;
+    }
+
+    .contact-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 15px;
+    }
+
+    .contact-name {
+        font-size: 15px;
+    }
+
+    .contact-status {
+        font-size: 12.5px;
+    }
+
+    .search-input {
+        padding: 11px 36px 11px 36px;
+    }
+
+    .sidebar-tab {
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+}
+
+/* ─── Small phones ───────────────────────────────────────────────── */
+@media (max-width: 380px) {
+    .sidebar-header {
+        padding: 14px 12px 8px;
+    }
+
+    .sidebar-title {
+        font-size: 16px;
+    }
+
+    .online-count {
+        font-size: 11px;
+    }
+
+    .sidebar-search {
+        padding: 0 12px 10px;
+    }
+
+    .sidebar-tabs {
+        padding: 0 12px 6px;
+    }
+
+    .sidebar-tab {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .contacts-list {
+        padding: 4px 6px 16px;
+    }
+
+    .contact-item {
+        gap: 10px;
+        padding: 10px 10px;
+        min-height: 60px;
+    }
+
+    .contact-avatar {
+        width: 42px;
+        height: 42px;
+        font-size: 13px;
+    }
+
+    .contact-name {
+        font-size: 14px;
+    }
+
+    .contact-status {
+        font-size: 11.5px;
     }
 }

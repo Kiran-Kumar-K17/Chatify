@@ -9,6 +9,8 @@ const Home = () => {
   const [allContacts, setAllContacts] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // Mobile: track whether to show the chat panel (vs sidebar)
+  const [showMobileChat, setShowMobileChat] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +32,7 @@ const Home = () => {
 
   const handleSelectUser = (contact) => {
     setSelectedUser(contact);
-    // Add to partners list if not already there (new conversation)
+    setShowMobileChat(true);
     setPartners((prev) => {
       const exists = prev.find((p) => p._id === contact._id);
       if (!exists) return [contact, ...prev];
@@ -38,8 +40,14 @@ const Home = () => {
     });
   };
 
+  const handleBackToSidebar = () => {
+    setShowMobileChat(false);
+  };
+
   return (
-    <div className="home-layout">
+    <div
+      className={`home-layout ${showMobileChat ? "mobile-chat-active" : ""}`}
+    >
       <SiderBar
         contacts={partners}
         allContacts={allContacts}
@@ -50,7 +58,7 @@ const Home = () => {
 
       <main className="home-chat-area">
         {selectedUser ? (
-          <ChatPage user={selectedUser} />
+          <ChatPage user={selectedUser} onBack={handleBackToSidebar} />
         ) : (
           <div className="home-empty-state">
             <div className="empty-state-icon">

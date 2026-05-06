@@ -99,3 +99,42 @@ textarea {
     background: rgba(0, 0, 0, 0.15);
     border-radius: 4px;
 }
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    body {
+        overflow: hidden;
+        /* Prevent pull-to-refresh */
+        overscroll-behavior: none;
+    }
+
+    /* Hide custom scrollbars on touch devices */
+    ::-webkit-scrollbar {
+        width: 0;
+        display: none;
+    }
+}
+
+/* Small phones — safe-area support for notched devices */
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    #root {
+        /* Account for notched devices */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}

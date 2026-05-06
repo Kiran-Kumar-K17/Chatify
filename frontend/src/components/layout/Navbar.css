@@ -39,7 +39,7 @@
 .navbar-right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
 }
 
 .navbar-user-info {
@@ -48,7 +48,7 @@
     gap: 10px;
 }
 
-/* ── Avatar button (wraps both img and initials fallback) ── */
+/* ── Avatar button ── */
 .navbar-avatar-btn {
     position: relative;
     width: 34px;
@@ -94,7 +94,6 @@
     letter-spacing: 0.5px;
 }
 
-/* Camera icon that appears on hover */
 .avatar-camera-overlay {
     position: absolute;
     inset: 0;
@@ -113,7 +112,6 @@
     opacity: 1;
 }
 
-/* Spinner overlay shown while uploading (photo version) */
 .avatar-upload-overlay {
     position: absolute;
     inset: 0;
@@ -140,7 +138,6 @@
     }
 }
 
-/* Error toast */
 .avatar-error-toast {
     background: #fef2f2;
     border: 1px solid #fecaca;
@@ -235,4 +232,99 @@
 .nav-link-solid:hover {
     opacity: 0.9;
     transform: translateY(-1px);
+}
+
+/* ─── Tablet navbar ──────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .navbar-username {
+        max-width: 100px;
+    }
+}
+
+/* ─── Mobile navbar ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 14px;
+        height: 56px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+
+    .brand-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+    }
+
+    /* Hide username label — keep only the avatar */
+    .navbar-username {
+        display: none;
+    }
+
+    /* Logout: icon only */
+    .logout-label {
+        display: none;
+    }
+
+    .navbar-logout-btn {
+        padding: 7px 10px;
+        gap: 0;
+    }
+
+    /* Auth links: show Sign Up button only */
+    .nav-link-ghost {
+        display: none;
+    }
+
+    .nav-link-solid {
+        padding: 7px 14px;
+        font-size: 13px;
+    }
+
+    .avatar-error-toast {
+        max-width: 160px;
+        font-size: 11.5px;
+    }
+}
+
+/* ─── Small phone navbar ─────────────────────────────────────────── */
+@media (max-width: 380px) {
+    .navbar {
+        padding: 0 10px;
+        height: 52px;
+    }
+
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .brand-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+    }
+
+    .brand-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .navbar-right {
+        gap: 8px;
+    }
+
+    .navbar-logout-btn {
+        padding: 6px 8px;
+    }
+
+    .nav-link-solid {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
 }

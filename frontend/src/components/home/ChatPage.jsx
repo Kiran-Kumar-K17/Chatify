@@ -92,7 +92,7 @@ const Lightbox = ({ src, onClose }) => {
 
 /* ─── ChatPage ─────────────────────────────────────────────────────── */
 
-const ChatPage = ({ user }) => {
+const ChatPage = ({ user, onBack }) => {
   const { user: currentUser } = useAuth();
   const { socket, onlineUsers } = useSocket() || {
     socket: null,
@@ -180,6 +180,27 @@ const ChatPage = ({ user }) => {
       {/* ── Chat header ── */}
       <div className="chat-header">
         <div className="chat-header-left">
+          {/* Back button — visible only on mobile via CSS */}
+          {onBack && (
+            <button
+              className="chat-back-btn"
+              onClick={onBack}
+              aria-label="Back to contacts"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                width="20"
+                height="20"
+              >
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+          )}
           <div className="chat-avatar-wrapper">
             <div
               className="chat-avatar"
