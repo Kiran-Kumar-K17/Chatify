@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  width: 280px;
+  background-color: white;
+  border-right: 1px solid #ddd;
+
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 12px;
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+
+  background-color: #f3f4f6;
+
+  transition: 0.2s;
+}
+
+.sidebar li:hover {
+  background-color: #e5e7eb;
+}
+
+/* =========================
+   CHAT AREA
+========================= */
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f9fafb;
+}

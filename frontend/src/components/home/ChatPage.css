@@ -1,0 +1,46 @@
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* =========================
+   CHAT HEADER
+========================= */
+
+.chat-page h2 {
+  padding: 20px;
+  background-color: white;
+
+  border-bottom: 1px solid #ddd;
+
+  color: #111827;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.messages-container {
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messages-container div {
+  max-width: 60%;
+
+  padding: 10px 15px;
+
+  background-color: white;
+
+  border-radius: 12px;
+
+  border: 1px solid #ddd;
+}
