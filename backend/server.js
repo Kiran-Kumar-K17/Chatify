@@ -18,7 +18,9 @@ app.use(
   }),
 );
 
-app.use(express.json());
+// Base64-encoded images can be ~6-7 MB for a 5 MB file — raise the limit
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
 app.get("/", (req, res) => {

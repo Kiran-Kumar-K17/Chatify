@@ -35,13 +35,16 @@ export const getMessagesById = async (req, res) => {
   }
 };
 
+// ~6.7 MB base64 upper bound for a 5 MB raw image
+const MAX_IMAGE_BASE64_BYTES = 7 * 1024 * 1024;
+
 export const sendMessage = async (req, res) => {
   try {
     const { text, image } = req.body;
     const { id: receiverId } = req.params;
     const senderId = req.user.id;
-    let imageUrl;
 
+    // ── validation ──────────────────────────────────────────────────
     if (!text && !image) {
       return res
         .status(400)
@@ -52,26 +55,48 @@ export const sendMessage = async (req, res) => {
         .status(400)
         .json({ error: "You cannot send a message to yourself" });
     }
+    if (text && text.length > 500) {
+      return res
+        .status(400)
+        .json({ error: "Message text must be 500 characters or fewer" });
+    }
+    if (image) {
+      // Must be a base64 data URI of an image
+      if (!image.startsWith("data:image/")) {
+        return res.status(400).json({ error: "Invalid image format" });
+      }
+      if (Buffer.byteLength(image, "utf8") > MAX_IMAGE_BASE64_BYTES) {
+        return res.status(400).json({ error: "Image is too large (max 5 MB)" });
+      }
+    }
+
     const receiverExists = await User.exists({ _id: receiverId });
     if (!receiverExists) {
       return res.status(404).json({ error: "Recipient not found" });
     }
+
+    // ── Cloudinary upload ────────────────────────────────────────────
+    let imageUrl;
     if (image) {
       const uploadResult = await cloudinary.uploader.upload(image, {
-        folder: "chat-app",
+        folder: "chat-app/messages",
         resource_type: "image",
+        // Strip metadata and auto-format for web delivery
+        transformation: [{ quality: "auto", fetch_format: "auto" }],
       });
       imageUrl = uploadResult.secure_url;
     }
 
-    const newMessage = new Message({
+    // ── Save & emit ──────────────────────────────────────────────────
+    const messageData = {
       senderId,
       recipientId: receiverId,
-      text,
-      image: imageUrl,
-    });
+      ...(text && { text: text.trim() }),
+      ...(imageUrl && { image: imageUrl }),
+    };
 
-    await newMessage.save();
+    const newMessage = await Message.create(messageData);
+
     const receiverSocketId = getReceiverSocketId(receiverId);
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);

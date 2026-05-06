@@ -1,5 +1,3 @@
-import { io } from "socket.io-client";
-
-export const socket = io("http://localhost:5000", {
-  withCredentials: true,
-});
+// Socket is managed via SocketContext (src/context/SocketContext.jsx)
+// This file is kept for reference only.
+export {};
